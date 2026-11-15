@@ -10,36 +10,20 @@ android {
     buildToolsVersion = '36.0.0'
     namespace = 'com.zcshou.gogogo'
 
-    signingConfigs {
-        debug {
-            storeFile file('..\\keystore\\GoGoGo.jks')
-            storePassword 'GoGoGo'
-            keyAlias 'GoGoKey'
-            keyPassword 'GoGoGo'
-        }
-        release {
-            storeFile file('..\\keystore\\GoGoGo.jks')
-            storePassword 'GoGoGo'
-            keyAlias 'GoGoKey'
-            keyPassword 'GoGoGo'
-        }
-    }
-
     defaultConfig {
-        applicationId "com.zcshou.gogogo"
+        applicationId "com.xaraers.gogogo"
         minSdkVersion 27
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 32
-        versionCode 1123
-        versionName '1.12.3' // https://semver.org/lang/zh-CN/
+        versionCode 1124
+        versionName '1.12.3-xara.1' // https://semver.org/lang/zh-CN/
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += ['zh', 'zh-rCN', 'en', 'en-rUS']
         ndk {
             //noinspection ChromeOsAbiSupport
             abiFilters "arm64-v8a"
         }
-        signingConfig = signingConfigs.release
-    }
+            }
 
     buildTypes {
         release {
@@ -56,12 +40,9 @@ android {
             // R8 configuration files.
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            signingConfig = signingConfigs.release
             multiDexEnabled = true
         }
-        debug {
-            signingConfig = signingConfigs.debug
-        }
+        debug { }
     }
 
     // 要存取 secret value 必須要使用到一個 BuildScript 的類別，默认会从 local.properties 中获取
