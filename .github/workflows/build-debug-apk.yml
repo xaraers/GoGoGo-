@@ -1,4 +1,5 @@
 name: Build Android Debug APK
+# Registered on the default branch; build branch updates trigger this workflow.
 
 on:
   workflow_dispatch:
