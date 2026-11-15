@@ -37,7 +37,9 @@ jobs:
           MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
           MAPS_SAFE_CODE: ${{ secrets.MAPS_SAFE_CODE }}
         run: |
-          printf 'MAPS_API_KEY=%s\nMAPS_SAFE_CODE=%s\n' "$MAPS_API_KEY" "$MAPS_SAFE_CODE" > local.properties
+          # The secrets plugin injects these values into Java BuildConfig fields.
+          # Quote them so an unset secret still becomes a valid empty Java String.
+          printf 'MAPS_API_KEY="%s"\nMAPS_SAFE_CODE="%s"\n' "$MAPS_API_KEY" "$MAPS_SAFE_CODE" > local.properties
 
       - name: Grant Gradle wrapper permission
         run: chmod +x ./gradlew
